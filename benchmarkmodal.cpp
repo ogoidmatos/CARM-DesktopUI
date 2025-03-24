@@ -10,6 +10,7 @@
 
 #include "benchmarkdata.h"
 #include "benchmarkmodal.h"
+#include "mainwindow.h"
 
 BenchmarkModal::BenchmarkModal(QWidget *parent)
     : QDialog(parent)
@@ -207,4 +208,6 @@ void BenchmarkModal::prepareBenchmarks()
     }
 
     close();
+
+    emit sendBenchmarkData(data);
 }

@@ -19,10 +19,12 @@ public:
     BenchmarkModal(QWidget *parent = 0);
     void setGPU();
     void setCPU();
-    void initializeLists(QListWidget *cudaList, QListWidget *tensorList);
 
 private slots:
     void prepareBenchmarks();
+
+signals:
+    void sendBenchmarkData(BenchmarkData data);
 
 private:
     DEVICE device;
@@ -40,6 +42,8 @@ private:
     QSpinBox *blocksBox;
     QPushButton *runButton;
     QPushButton *closeButton;
+
+    void initializeLists(QListWidget *cudaList, QListWidget *tensorList);
 };
 
 #endif // BENCHMARKMODAL_H

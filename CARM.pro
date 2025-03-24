@@ -11,13 +11,17 @@ CONFIG += c++17
 SOURCES += \
     benchmarkmodal.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    progressmodal.cpp \
+    waitingspinnerwidget.cpp
 
 HEADERS += \
     benchmarkdata.h \
     benchmarkmodal.h \
     dbmanager.h \
-    mainwindow.h
+    mainwindow.h \
+    progressmodal.h \
+    waitingspinnerwidget.h
 
 FORMS += \
     mainwindow.ui

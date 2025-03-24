@@ -52,6 +52,14 @@ public:
         return *this;
     }
 
+    DEVICE getDevice() const;
+    int getThreads() const;
+    int getBlocks() const;
+    string getMachine_name() const;
+    vector<string> getCuda() const;
+    vector<string> getTensor() const;
+    string getTest() const;
+
 private:
     DEVICE device;
     int threads;
@@ -61,5 +69,40 @@ private:
     vector<string> tensor;
     string test;
 };
+
+inline DEVICE BenchmarkData::getDevice() const
+{
+    return device;
+}
+
+inline int BenchmarkData::getThreads() const
+{
+    return threads;
+}
+
+inline int BenchmarkData::getBlocks() const
+{
+    return blocks;
+}
+
+inline string BenchmarkData::getMachine_name() const
+{
+    return machine_name;
+}
+
+inline vector<string> BenchmarkData::getCuda() const
+{
+    return cuda;
+}
+
+inline vector<string> BenchmarkData::getTensor() const
+{
+    return tensor;
+}
+
+inline string BenchmarkData::getTest() const
+{
+    return test;
+}
 
 #endif // BENCHMARKDATA_H

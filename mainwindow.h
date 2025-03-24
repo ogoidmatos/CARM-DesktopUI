@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "benchmarkdata.h"
 
 class BenchmarkModal;
 
@@ -21,6 +22,7 @@ public:
 
 private slots:
     void on_actionRun_GPU_Benchmark_triggered();
+    void runBenchmarks(BenchmarkData data);
 
 private:
     Ui::MainWindow *ui;
