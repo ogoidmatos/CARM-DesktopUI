@@ -35,6 +35,9 @@ Makefile*
 # Qt unit tests
 target_wrapper.*
 
+# Build folders
+build/
+
 # QtCreator
 *.autosave
 
