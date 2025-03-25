@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     benchmarkmodal.cpp \
+    interfacegpu.cpp \
     main.cpp \
     mainwindow.cpp \
     progressmodal.cpp \
@@ -19,6 +20,7 @@ HEADERS += \
     benchmarkdata.h \
     benchmarkmodal.h \
     dbmanager.h \
+    interfacegpu.h \
     mainwindow.h \
     progressmodal.h \
     waitingspinnerwidget.h

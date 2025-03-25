@@ -1,4 +1,5 @@
 #include "progressmodal.h"
+#include "interfacegpu.h"
 #include "waitingspinnerwidget.h"
 
 #include <QDialogButtonBox>
@@ -6,6 +7,7 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QTextEdit>
+#include <QThread>
 #include <QVBoxLayout>
 
 ProgressModal::ProgressModal(const BenchmarkData &data, QWidget *parent)
@@ -48,6 +50,17 @@ ProgressModal::ProgressModal(const BenchmarkData &data, QWidget *parent)
 
     setLayout(mainLayout);
     setFixedSize(sizeHint());
+
+    //create thread here
+    interface = new InterfaceGPU(data, this);
+    connect(interface, SIGNAL(terminateBenchmarks()), this, SLOT(closeDialog()));
+
+    interface->start();
+}
+
+void ProgressModal::addText(const QString &text)
+{
+    textBox->append(text);
 }
 
 void ProgressModal::reject()
@@ -62,4 +75,9 @@ void ProgressModal::reject()
     if (resBtn == QMessageBox::Yes) {
         QDialog::reject();
     }
+}
+
+void ProgressModal::closeDialog()
+{
+    QDialog::reject();
 }
