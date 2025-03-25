@@ -1,24 +1,53 @@
 #include "progressmodal.h"
 #include "waitingspinnerwidget.h"
 
+#include <QDialogButtonBox>
+#include <QHBoxLayout>
+#include <QLabel>
 #include <QMessageBox>
+#include <QTextEdit>
+#include <QVBoxLayout>
 
 ProgressModal::ProgressModal(const BenchmarkData &data, QWidget *parent)
     : QDialog(parent)
 {
-    spinner = new WaitingSpinnerWidget(this);
+    setWindowTitle("Executing Benchmarks");
+
+    spinner = new WaitingSpinnerWidget(0, false, false);
     spinner->setRoundness(70.0);
     spinner->setMinimumTrailOpacity(15.0);
     spinner->setTrailFadePercentage(70.0);
-    spinner->setNumberOfLines(12);
-    spinner->setLineLength(10);
-    spinner->setLineWidth(5);
-    spinner->setInnerRadius(10);
+    spinner->setNumberOfLines(10);
+    spinner->setLineLength(5);
+    spinner->setLineWidth(2);
+    spinner->setInnerRadius(5);
     spinner->setRevolutionsPerSecond(1);
     spinner->setColor(QColor(81, 4, 71));
+    spinner->start();
 
-    setWindowTitle("Executing Benchmarks");
-    //setFixedSize(sizeHint());
+    QLabel *label = new QLabel;
+    label->setText("Benchmark Output:");
+
+    textBox = new QTextEdit;
+    textBox->setReadOnly(true);
+    textBox->setFixedWidth(500);
+    textBox->setFixedHeight(300);
+
+    buttonBox = new QDialogButtonBox(QDialogButtonBox::Cancel);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+
+    QHBoxLayout *buttonLayout = new QHBoxLayout;
+    buttonLayout->addStretch();
+    buttonLayout->addWidget(spinner);
+    buttonLayout->addWidget(buttonBox);
+
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    mainLayout->addWidget(label);
+    mainLayout->addWidget(textBox);
+    mainLayout->addLayout(buttonLayout);
+
+    setLayout(mainLayout);
+    setFixedSize(sizeHint());
 }
 
 void ProgressModal::reject()

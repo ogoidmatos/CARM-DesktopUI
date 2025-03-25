@@ -5,6 +5,8 @@
 #include "benchmarkdata.h"
 
 class WaitingSpinnerWidget;
+class QDialogButtonBox;
+class QTextEdit;
 
 class ProgressModal : public QDialog
 {
@@ -14,6 +16,8 @@ public:
 
 private:
     WaitingSpinnerWidget *spinner;
+    QDialogButtonBox *buttonBox;
+    QTextEdit *textBox;
 
     void reject();
 };

@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     , dialog(new BenchmarkModal(this))
 {
     ui->setupUi(this);
+    setWindowTitle("CARM Desktop UI");
 
     connect(dialog,
             SIGNAL(sendBenchmarkData(BenchmarkData)),
